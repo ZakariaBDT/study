@@ -1,0 +1,14 @@
+{
+  "apiVersion": 2,
+  "name": "brtb/bootstrap",
+  "version": "0.1.0",
+  "title": "Bootstrap Block",
+  "category": "boilerplate",
+  "icon": "smiley",
+  "description": "Example block written with ESNext standard and JSX support build step required.",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "textdomain": "boilerplate"
+}

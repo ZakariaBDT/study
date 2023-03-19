@@ -1,0 +1,34 @@
+
+		// print_r($blockStyle);
+
+		// Stash CSS in uploads directory
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		WP_Filesystem();
+		global $wp_filesystem;
+		$upload_dir = wp_upload_dir();
+		$upload_dir = $upload_dir['basedir'];
+		$upload_dir = $upload_dir . '/controls-study';
+		// Create directory if it doesn't exist
+		$wp_filesystem->mkdir( $upload_dir );
+
+		// // Create file if it doesn't exist
+		// $filename = $upload_dir . '/style.css';
+		// check if uniqueId file is exist
+		// $filename = $uniqueId . '.css';
+
+		// delete file and create new one if new uniqueId is generated
+		$filename = $uniqueId . '.css';
+		$wp_filesystem->delete( $upload_dir . '/' . $filename );
+
+		// create file if it doesn't exist
+		$wp_filesystem->touch( $upload_dir . '/' . $filename );
+
+		// Write CSS to file
+
+		$wp_filesystem->put_contents( $filename, $blockStyle, FS_CHMOD_FILE );
+
+		// uploads folder dir url
+		$upload_dir_url = wp_upload_dir();
+
+		// enqueue style
+		wp_enqueue_style( 'boilerplate-style-' . $uniqueId, $upload_dir_url['baseurl'] . '/controls-study/' . $filename, array(), BOILERPLATE_VERSION );
